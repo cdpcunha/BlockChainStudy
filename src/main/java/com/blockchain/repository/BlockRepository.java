@@ -3,9 +3,9 @@ package com.blockchain.repository;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import com.blockchain.entities.User;
+import com.blockchain.bcentities.Block;
 
 @Repository()
-public interface UserRepository extends MongoRepository<User, String>{
+public interface BlockRepository extends MongoRepository<Block, String>{
 
 }
