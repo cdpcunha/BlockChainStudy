@@ -1,4 +1,4 @@
-package com.blockchain.bcentities;
+package com.blockchain.DTO;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -8,12 +8,14 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.blockchain.entities.Block;
+import com.blockchain.entities.Transaction;
+
 @Document(collection = "block")
-public class Block implements Serializable{
+public class BlockDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	
 	@Id	
 	private String blockNumber;
 	
@@ -23,7 +25,7 @@ public class Block implements Serializable{
 	private String nextChain;
 	private List<Transaction> transactions = new ArrayList<>();
 
-	public Block(String blockNumber, Instant blockInitialDate, Instant blockCloseDate, String prevChain, String nextChain,
+	public BlockDTO(String blockNumber, Instant blockInitialDate, Instant blockCloseDate, String prevChain, String nextChain,
 			List<Transaction> transactions) {
 		super();
 		this.blockNumber = blockNumber;
@@ -34,7 +36,19 @@ public class Block implements Serializable{
 		this.transactions = transactions;
 	}
 
-	public Block() {
+	public BlockDTO() {
+	}
+	
+	
+
+	public BlockDTO(Block block) {
+		super();
+		this.blockNumber = block.getBlockNumber();
+		this.blockInitialDate = block.getBlockInitialDate();
+		this.blockCloseDate = block.getBlockCloseDate();
+		this.prevChain = block.getPrevChain();
+		this.nextChain = block.getNextChain();
+		this.transactions = block.getTransactions();
 	}
 
 	public String getBlockNumber() {
@@ -85,11 +99,13 @@ public class Block implements Serializable{
 		this.transactions = transactions;
 	}
 
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((blockCloseDate == null) ? 0 : blockCloseDate.hashCode());
+		result = prime * result + ((blockNumber == null) ? 0 : blockNumber.hashCode());
 		return result;
 	}
 
@@ -101,11 +117,11 @@ public class Block implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Block other = (Block) obj;
-		if (blockCloseDate == null) {
-			if (other.blockCloseDate != null)
+		BlockDTO other = (BlockDTO) obj;
+		if (blockNumber == null) {
+			if (other.blockNumber != null)
 				return false;
-		} else if (!blockCloseDate.equals(other.blockCloseDate))
+		} else if (!blockNumber.equals(other.blockNumber))
 			return false;
 		return true;
 	}
