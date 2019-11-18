@@ -1,6 +1,7 @@
 package com.blockchain.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,7 +14,34 @@ public class User implements Serializable{
 	@Id
 	private String id;
 	private String userName;
+	private Instant birthdate;
+	private String password;
+	
 		
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public User(String id, String userName, Instant birthdate, String password) {
+		super();
+		this.id = id;
+		this.userName = userName;
+		this.birthdate = birthdate;
+		this.password = password;
+	}
+
+	public Instant getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(Instant birthdate) {
+		this.birthdate = birthdate;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -30,12 +58,7 @@ public class User implements Serializable{
 		this.userName = userName;
 	}
 
-	public User(String id, String userName) {
-		super();
-		this.id = id;
-		this.userName = userName;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
