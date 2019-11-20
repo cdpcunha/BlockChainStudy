@@ -10,13 +10,11 @@ public class UserDTO implements Serializable {
 	private String id;
 	private String userName;
 	private Instant birthdate;
-	private String password;
 
 	public UserDTO(User user) {
 		this.id = user.getId();
 		this.userName = user.getUserName();
 		this.birthdate = user.getBirthdate();
-		this.password = user.getPassword();
 	}
 
 	public UserDTO() {
@@ -44,14 +42,6 @@ public class UserDTO implements Serializable {
 
 	public void setBirthdate(Instant birthdate) {
 		this.birthdate = birthdate;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	@Override

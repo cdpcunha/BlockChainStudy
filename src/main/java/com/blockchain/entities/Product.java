@@ -5,40 +5,49 @@ import java.io.Serializable;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "company")
-public class Company implements Serializable{
-
+@Document(collection = "product")
+public class Product implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private Integer id;
-	private String companyName;
-
-
-	public Company(Integer id, String companyName) {
-		super();
-		this.id = id;
-		this.companyName = companyName;
-	}
+	private String id;
 	
-	public Company() {
+	private String prodName;
+	private Double ammount;
+	
+	public Product() {
 		
 	}
 	
-	public Integer getId() {
+	public Product(String id, String prodName, Double ammount) {
+		super();
+		this.id = id;
+		this.prodName = prodName;
+		this.ammount = ammount;
+	}
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public String getcompanyName() {
-		return companyName;
+	public String getProdName() {
+		return prodName;
 	}
 
-	public void setcompanyName(String companyName) {
-		this.companyName = companyName;
+	public void setProdName(String prodName) {
+		this.prodName = prodName;
+	}
+
+	public Double getAmmount() {
+		return ammount;
+	}
+
+	public void setAmmount(Double ammount) {
+		this.ammount = ammount;
 	}
 
 	@Override
@@ -57,7 +66,7 @@ public class Company implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Company other = (Company) obj;
+		Product other = (Product) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -68,10 +77,7 @@ public class Company implements Serializable{
 
 	@Override
 	public String toString() {
-		return "company [id=" + id + ", companyName=" + companyName + "]";
+		return "Product [id=" + id + ", prodName=" + prodName + ", ammount=" + ammount + "]";
 	}
-	
-	
-	
 	
 }

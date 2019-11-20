@@ -1,4 +1,4 @@
-package com.blockchain.entities;
+package com.blockchain.DTO;
 
 import java.io.Serializable;
 import java.util.List;
@@ -6,8 +6,13 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.blockchain.entities.Company;
+import com.blockchain.entities.Product;
+import com.blockchain.entities.Transaction;
+import com.blockchain.entities.User;
+
 @Document(collection = "transaction")
-public class Transaction implements Serializable {
+public class TransactionDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -20,21 +25,16 @@ public class Transaction implements Serializable {
 	private List<Product> originProductList;
 	private List<Product> targetProductList;
 
-	public Transaction(String id, Company originCompany, User originUser, Company targetCompany, User targetUser,
-			Integer transactionStatus, List<Product> originProductList, List<Product> targetProductList) {
+	public TransactionDTO(Transaction transaction) {
 		super();
-		this.id = id;
-		this.originCompany = originCompany;
-		this.originUser = originUser;
-		this.targetCompany = targetCompany;
-		this.targetUser = targetUser;
-		TransactionStatus = transactionStatus;
-		this.originProductList = originProductList;
-		this.targetProductList = targetProductList;
-	}
-
-	public Transaction() {
-
+		this.id = transaction.getId();
+		this.originCompany = transaction.getOriginCompany();
+		this.originUser = transaction.getOriginUser();
+		this.targetCompany = transaction.getTargetCompany();
+		this.targetUser = transaction.getTargetUser();
+		TransactionStatus = transaction.getTransactionStatus();
+		this.originProductList = transaction.getOriginProductList();
+		this.targetProductList = transaction.getTargetProductList();
 	}
 
 	public Company getOriginCompany() {
@@ -113,7 +113,7 @@ public class Transaction implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Transaction other = (Transaction) obj;
+		TransactionDTO other = (TransactionDTO) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
