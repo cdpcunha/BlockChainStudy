@@ -5,34 +5,24 @@ import java.io.Serializable;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "product")
-public class Product implements Serializable{
+@Document(collection = "item")
+public class Item implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	private String id;
 	
-	private String prodName;
-	private String description;
+	private Product product;
+	private Double ammount;
 	
-	public Product() {
-		
+	public Item() {
 	}
-	
-	public Product(String id, String prodName, String description) {
+
+	public Item(String id, Product product, Double ammount) {
 		super();
 		this.id = id;
-		this.prodName = prodName;
-		this.description = description;
-	}
-
-	
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+		this.product = product;
+		this.ammount = ammount;
 	}
 
 	public String getId() {
@@ -43,12 +33,20 @@ public class Product implements Serializable{
 		this.id = id;
 	}
 
-	public String getProdName() {
-		return prodName;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProdName(String prodName) {
-		this.prodName = prodName;
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Double getAmmount() {
+		return ammount;
+	}
+
+	public void setAmmount(Double ammount) {
+		this.ammount = ammount;
 	}
 
 	@Override
@@ -67,7 +65,7 @@ public class Product implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Product other = (Product) obj;
+		Item other = (Item) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -78,7 +76,8 @@ public class Product implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", prodName=" + prodName + ", description =" + description + "]";
+		return "Item [id=" + id + ", product=" + product + ", ammount=" + ammount + "]";
 	}
 	
-}
+	
+	}

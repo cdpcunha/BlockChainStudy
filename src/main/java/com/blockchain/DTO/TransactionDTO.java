@@ -7,7 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.blockchain.entities.Company;
-import com.blockchain.entities.Product;
+import com.blockchain.entities.Item;
 import com.blockchain.entities.Transaction;
 import com.blockchain.entities.User;
 
@@ -22,8 +22,8 @@ public class TransactionDTO implements Serializable{
 	private Company targetCompany;
 	private User targetUser;
 	private Integer TransactionStatus;
-	private List<Product> originProductList;
-	private List<Product> targetProductList;
+	private List<Item> originItemList;
+	private List<Item> targetItemList;
 
 	public TransactionDTO(Transaction transaction) {
 		super();
@@ -33,8 +33,8 @@ public class TransactionDTO implements Serializable{
 		this.targetCompany = transaction.getTargetCompany();
 		this.targetUser = transaction.getTargetUser();
 		TransactionStatus = transaction.getTransactionStatus();
-		this.originProductList = transaction.getOriginProductList();
-		this.targetProductList = transaction.getTargetProductList();
+		this.originItemList = transaction.getOriginItemList();
+		this.targetItemList = transaction.getTargetItemList();
 	}
 
 	public Company getOriginCompany() {
@@ -77,20 +77,20 @@ public class TransactionDTO implements Serializable{
 		TransactionStatus = transactionStatus;
 	}
 
-	public List<Product> getOriginProductList() {
-		return originProductList;
+	public List<Item> getOriginItemList() {
+		return originItemList;
 	}
 
-	public void setOriginProductList(List<Product> originProductList) {
-		this.originProductList = originProductList;
+	public void setOriginItemList(List<Item> originItemList) {
+		this.originItemList = originItemList;
 	}
 
-	public List<Product> getTargetProductList() {
-		return targetProductList;
+	public List<Item> getTargetItemList() {
+		return targetItemList;
 	}
 
-	public void setTargetProductList(List<Product> targetProductList) {
-		this.targetProductList = targetProductList;
+	public void setTargetItemList(List<Item> targetItemList) {
+		this.targetItemList = targetItemList;
 	}
 
 	public String getId() {
@@ -126,8 +126,8 @@ public class TransactionDTO implements Serializable{
 	public String toString() {
 		return "Transaction [id=" + id + ", originCompany=" + originCompany + ", originUser=" + originUser
 				+ ", targetCompany=" + targetCompany + ", targetUser=" + targetUser + ", TransactionStatus="
-				+ TransactionStatus + ", originProductList=" + originProductList + ", targetProductList="
-				+ targetProductList + "]";
+				+ TransactionStatus + ", originItemList=" + originItemList + ", targetItemList="
+				+ targetItemList + "]";
 	}
 
 	

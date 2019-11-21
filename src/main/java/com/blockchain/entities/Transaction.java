@@ -17,11 +17,11 @@ public class Transaction implements Serializable {
 	private Company targetCompany;
 	private User targetUser;
 	private Integer TransactionStatus;
-	private List<Product> originProductList;
-	private List<Product> targetProductList;
+	private List<Item> originItemList;
+	private List<Item> targetItemList;
 
 	public Transaction(String id, Company originCompany, User originUser, Company targetCompany, User targetUser,
-			Integer transactionStatus, List<Product> originProductList, List<Product> targetProductList) {
+			Integer transactionStatus, List<Item> originItemList, List<Item> targetItemList) {
 		super();
 		this.id = id;
 		this.originCompany = originCompany;
@@ -29,8 +29,8 @@ public class Transaction implements Serializable {
 		this.targetCompany = targetCompany;
 		this.targetUser = targetUser;
 		TransactionStatus = transactionStatus;
-		this.originProductList = originProductList;
-		this.targetProductList = targetProductList;
+		this.originItemList = originItemList;
+		this.targetItemList = targetItemList;
 	}
 
 	public Transaction() {
@@ -77,20 +77,20 @@ public class Transaction implements Serializable {
 		TransactionStatus = transactionStatus;
 	}
 
-	public List<Product> getOriginProductList() {
-		return originProductList;
+	public List<Item> getOriginItemList() {
+		return originItemList;
 	}
 
-	public void setOriginProductList(List<Product> originProductList) {
-		this.originProductList = originProductList;
+	public void setOriginItemList(List<Item> originItemList) {
+		this.originItemList = originItemList;
 	}
 
-	public List<Product> getTargetProductList() {
-		return targetProductList;
+	public List<Item> getTargetItemList() {
+		return targetItemList;
 	}
 
-	public void setTargetProductList(List<Product> targetProductList) {
-		this.targetProductList = targetProductList;
+	public void setTargetItemList(List<Item> targetItemList) {
+		this.targetItemList = targetItemList;
 	}
 
 	public String getId() {
@@ -126,8 +126,8 @@ public class Transaction implements Serializable {
 	public String toString() {
 		return "Transaction [id=" + id + ", originCompany=" + originCompany + ", originUser=" + originUser
 				+ ", targetCompany=" + targetCompany + ", targetUser=" + targetUser + ", TransactionStatus="
-				+ TransactionStatus + ", originProductList=" + originProductList + ", targetProductList="
-				+ targetProductList + "]";
+				+ TransactionStatus + ", originItemList=" + originItemList + ", targetItemList="
+				+ targetItemList + "]";
 	}
 
 	
