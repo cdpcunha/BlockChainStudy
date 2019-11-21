@@ -22,13 +22,13 @@ public class Block implements Serializable{
 	private String nextChain;
 	private List<Transaction> transactions = new ArrayList<>();
 
-	public Block(String blockNumber, Instant blockInitialDate, Instant blockCloseDate, String prevChain, String nextChain,
+	public Block(String blockNumber, Instant blockInitialDate, Instant blockCloseDate, String optional, String nextChain,
 			List<Transaction> transactions) {
 		super();
 		this.blockNumber = blockNumber;
 		this.blockInitialDate = blockInitialDate;
 		this.blockCloseDate = blockCloseDate;
-		this.prevChain = prevChain;
+		this.prevChain = optional;
 		this.nextChain = nextChain;
 		this.transactions = transactions;
 	}

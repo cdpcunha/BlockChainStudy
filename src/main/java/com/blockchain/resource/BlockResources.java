@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,4 +34,13 @@ public class BlockResources {
 		Block block = service.findById(id);
 		return ResponseEntity.ok().body(new BlockDTO(block));
 	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+	public ResponseEntity<Block> update(@PathVariable String id, @RequestBody Block block){
+		Block obj = service.findById(id);
+		obj.setBlockNumber(id);
+		obj = service.update(block);
+		return ResponseEntity.noContent().build();
+	}
+	
 }
