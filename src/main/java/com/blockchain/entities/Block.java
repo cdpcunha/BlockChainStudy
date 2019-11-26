@@ -21,19 +21,28 @@ public class Block implements Serializable{
 	private String prevChain;
 	private String nextChain;
 	private List<Transaction> transactions = new ArrayList<>();
+	private Integer hashCode;
 
-	public Block(String blockNumber, Instant blockInitialDate, Instant blockCloseDate, String optional, String nextChain,
+	public Block(String blockNumber, Instant blockInitialDate, Instant blockCloseDate, String prevChain, String nextChain,
 			List<Transaction> transactions) {
 		super();
 		this.blockNumber = blockNumber;
 		this.blockInitialDate = blockInitialDate;
 		this.blockCloseDate = blockCloseDate;
-		this.prevChain = optional;
+		this.prevChain = prevChain;
 		this.nextChain = nextChain;
 		this.transactions = transactions;
 	}
 
 	public Block() {
+	}
+	
+	public Integer getHashCode() {
+		return hashCode;
+	}
+
+	public void setHashCode(Integer hashCode) {
+		this.hashCode = hashCode;
 	}
 
 	public String getBlockNumber() {

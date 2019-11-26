@@ -39,4 +39,9 @@ public class BlockServices {
 		newBlock.setNextChain(block.getNextChain());
 		newBlock.setTransactions(block.getTransactions());
 	}
+	
+	public void closeBlock(Block block) {
+	//fecha o bloco que constituiu 10 transações, gera a hash para o campo respectivo e a data de fechamento TO DO	
+	}
+	
 }

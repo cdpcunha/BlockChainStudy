@@ -57,6 +57,10 @@ public class Transaction implements Serializable {
 		return targetCompany;
 	}
 
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public void setTargetCompany(Company targetCompany) {
 		this.targetCompany = targetCompany;
 	}

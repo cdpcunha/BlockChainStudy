@@ -24,9 +24,10 @@ public class BlockDTO implements Serializable{
 	private String prevChain;
 	private String nextChain;
 	private List<Transaction> transactions = new ArrayList<>();
+	private Integer hashCode;
 
 	public BlockDTO(String blockNumber, Instant blockInitialDate, Instant blockCloseDate, String prevChain, String nextChain,
-			List<Transaction> transactions) {
+			List<Transaction> transactions, Integer hashCode) {
 		super();
 		this.blockNumber = blockNumber;
 		this.blockInitialDate = blockInitialDate;
@@ -34,12 +35,19 @@ public class BlockDTO implements Serializable{
 		this.prevChain = prevChain;
 		this.nextChain = nextChain;
 		this.transactions = transactions;
+		this.hashCode = hashCode;
 	}
 
 	public BlockDTO() {
 	}
-	
-	
+
+	public Integer getHashCode() {
+		return hashCode;
+	}
+
+	public void setHashCode(Integer hashCode) {
+		this.hashCode = hashCode;
+	}
 
 	public BlockDTO(Block block) {
 		super();
