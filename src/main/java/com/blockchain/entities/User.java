@@ -1,23 +1,30 @@
 package com.blockchain.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Document(collection = "user")
 public class User implements Serializable{
-
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	private String id;
 	private String userName;
-	private Instant birthdate;
+	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date birthdate;
+	
 	private String password;
 	
+	public User() {
 		
+	}
+	
 	public String getPassword() {
 		return password;
 	}
@@ -25,8 +32,9 @@ public class User implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 
-	public User(String id, String userName, Instant birthdate, String password) {
+	public User(String id, String userName, Date birthdate, String password) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -34,11 +42,11 @@ public class User implements Serializable{
 		this.password = password;
 	}
 
-	public Instant getBirthdate() {
+	public Date getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(Instant birthdate) {
+	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
 

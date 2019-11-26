@@ -26,16 +26,17 @@ public class BlockServices {
 	}
 	
 	public Block update(Block block) {
-		Optional<Block> newBlock = blockRepo.findById(block.getBlockNumber());
+		Block newBlock = new Block();
+		newBlock.setBlockNumber(block.getBlockNumber());
 		updateData(newBlock,block);
-		return blockRepo.save(newBlock.get());
+		return blockRepo.save(newBlock);
 	}
 
-	private void updateData(Optional<Block> newBlock, Block block) {
-		newBlock.get().setBlockCloseDate(block.getBlockCloseDate());
-		newBlock.get().setBlockInitialDate(block.getBlockInitialDate());
-		newBlock.get().setPrevChain(block.getPrevChain());
-		newBlock.get().setNextChain(block.getNextChain());
-		newBlock.get().setTransactions(block.getTransactions());
+	private void updateData(Block newBlock, Block block) {
+		newBlock.setBlockCloseDate(block.getBlockCloseDate());
+		newBlock.setBlockInitialDate(block.getBlockInitialDate());
+		newBlock.setPrevChain(block.getPrevChain());
+		newBlock.setNextChain(block.getNextChain());
+		newBlock.setTransactions(block.getTransactions());
 	}
 }
