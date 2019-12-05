@@ -1,17 +1,16 @@
 package com.blockchain.configuration;
 
-import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
-import com.blockchain.entities.Company;
+import com.blockchain.entities.Block;
 import com.blockchain.repository.BlockRepository;
 import com.blockchain.repository.CompanyRepository;
 import com.blockchain.repository.ProductRepository;
 import com.blockchain.repository.TransactionRepository;
 import com.blockchain.repository.UserRepository;
+import com.blockchain.services.BlockServices;
 
 @Configuration
 public class Configurations implements CommandLineRunner {
@@ -21,6 +20,8 @@ public class Configurations implements CommandLineRunner {
 
 	@Autowired
 	BlockRepository blockRepo;
+	@Autowired
+	BlockServices blockServices;
 
 	@Autowired
 	ProductRepository prodRepo;
@@ -33,8 +34,10 @@ public class Configurations implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+				
+		/*
+		blockServices.closeBlock(??????);
 
-/*
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 		blockRepo.deleteAll();

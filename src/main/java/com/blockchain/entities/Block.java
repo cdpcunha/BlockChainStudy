@@ -8,14 +8,17 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.blockchain.services.exceptions.CloseDateExists;
+import com.blockchain.services.exceptions.HashAlreadyCalculated;
+
 @Document(collection = "block")
-public class Block implements Serializable{
+public class Block implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id	
+	@Id
 	private String blockNumber;
-	
+
 	private Instant blockInitialDate;
 	private Instant blockCloseDate;
 	private String prevChain;
@@ -23,8 +26,8 @@ public class Block implements Serializable{
 	private List<Transaction> transactions = new ArrayList<>();
 	private Integer hashCode;
 
-	public Block(String blockNumber, Instant blockInitialDate, Instant blockCloseDate, String prevChain, String nextChain,
-			List<Transaction> transactions) {
+	public Block(String blockNumber, Instant blockInitialDate, Instant blockCloseDate, String prevChain,
+			String nextChain, List<Transaction> transactions) {
 		super();
 		this.blockNumber = blockNumber;
 		this.blockInitialDate = blockInitialDate;
@@ -36,13 +39,16 @@ public class Block implements Serializable{
 
 	public Block() {
 	}
-	
+
 	public Integer getHashCode() {
 		return hashCode;
 	}
 
-	public void setHashCode(Integer hashCode) {
-		this.hashCode = hashCode;
+	public void setHashCode() {
+		if (this.hashCode == null) {
+			this.hashCode = hashCode();
+		}
+		else throw new HashAlreadyCalculated("Hash do bloco ja foi calculada e o mesmo ja está fechado.");
 	}
 
 	public String getBlockNumber() {
@@ -50,7 +56,9 @@ public class Block implements Serializable{
 	}
 
 	public void setBlockNumber(String blockNumber) {
-		this.blockNumber = blockNumber;
+		if (this.blockNumber == null) {
+			this.blockNumber = blockNumber;
+		}
 	}
 
 	public Instant getBlockInitialDate() {
@@ -58,7 +66,9 @@ public class Block implements Serializable{
 	}
 
 	public void setBlockInitialDate(Instant blockInitialDate) {
-		this.blockInitialDate = blockInitialDate;
+		if (this.blockInitialDate == null) {
+			this.blockInitialDate = blockInitialDate;
+		}
 	}
 
 	public Instant getBlockCloseDate() {
@@ -66,7 +76,10 @@ public class Block implements Serializable{
 	}
 
 	public void setBlockCloseDate(Instant blockCloseDate) {
-		this.blockCloseDate = blockCloseDate;
+		if (this.blockCloseDate == null) {
+			this.blockCloseDate = blockCloseDate;
+		} else
+			throw new CloseDateExists("Bloco já posusi data de fechamento.");
 	}
 
 	public String getPrevChain() {
@@ -74,7 +87,9 @@ public class Block implements Serializable{
 	}
 
 	public void setPrevChain(String prevChain) {
+		if(this.prevChain == null) {
 		this.prevChain = prevChain;
+		}
 	}
 
 	public String getNextChain() {
@@ -82,7 +97,9 @@ public class Block implements Serializable{
 	}
 
 	public void setNextChain(String nextChain) {
-		this.nextChain = nextChain;
+		if (this.nextChain == null) {
+			this.nextChain = nextChain;
+		}
 	}
 
 	public List<Transaction> getTransactions() {
@@ -122,9 +139,8 @@ public class Block implements Serializable{
 	public String toString() {
 		return "Block [blockNumber=" + blockNumber + ", blockInitialDate=" + blockInitialDate + ", blockCloseDate="
 				+ blockCloseDate + ", prevChain=" + prevChain + ", nextChain=" + nextChain + ", transactions="
-				+ transactions + "]";
+				+ transactions + ", hashCode=" + hashCode + "]";
 	}
-	
-	
-	
+
+
 }

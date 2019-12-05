@@ -1,5 +1,6 @@
 package com.blockchain.services;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +17,18 @@ public class BlockServices {
 	@Autowired
 	private BlockRepository blockRepo;
 
+	public void closeBlock(String blockID) {
+		Block closingBlock = blockRepo.findById(blockID).get();
+		if(closingBlock.getBlockCloseDate() == null || closingBlock.getHashCode()== null || closingBlock.getNextChain() == null) {
+			Block recentCreatedNewBlock = new Block(null,Instant.now(),null,closingBlock.getBlockNumber(),null,null);
+			blockRepo.save(recentCreatedNewBlock);
+			closingBlock.setNextChain(recentCreatedNewBlock.getBlockNumber());
+			closingBlock.setBlockCloseDate(Instant.now());
+			closingBlock.setHashCode();			
+			update(closingBlock);
+		}
+	}
+	
 	public List<Block> findAll() {
 	return blockRepo.findAll();
 	}
@@ -38,10 +51,6 @@ public class BlockServices {
 		newBlock.setPrevChain(block.getPrevChain());
 		newBlock.setNextChain(block.getNextChain());
 		newBlock.setTransactions(block.getTransactions());
+		newBlock.setHashCode();
 	}
-	
-	public void closeBlock(Block block) {
-	//fecha o bloco que constituiu 10 transações, gera a hash para o campo respectivo e a data de fechamento TO DO	
-	}
-	
 }
