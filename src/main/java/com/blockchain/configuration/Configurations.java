@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
-import com.blockchain.entities.Block;
 import com.blockchain.repository.BlockRepository;
 import com.blockchain.repository.CompanyRepository;
 import com.blockchain.repository.ProductRepository;
@@ -67,5 +66,7 @@ public class Configurations implements CommandLineRunner {
 		Company c2 = new Company(null,"Vale");
 		compRepo.saveAll(Arrays.asList(c1,c2));
 		*/
+		
+		//blockServices.closeBlock("5deab7ab7953247b04de7a2e");
 	}
 }
